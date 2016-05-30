@@ -21,10 +21,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
+app.use('/', express.static(__dirname + '/client'));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
+
 var router = express.Router();
 
 router.get('/', function (req, res) {
-	res.send("Hello World!");
+	res.sendfile('./client/index.html');
 });
 
 
