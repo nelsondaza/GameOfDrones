@@ -1,4 +1,3 @@
-var faker = require('faker');
 var db = null;
 
 exports.setDB = function (globalDB) {
@@ -18,12 +17,8 @@ exports.index = function (req, res) {
 	};
 
 	db.all("" +
-		"SELECT players.*, (" +
-			"SELECT COUNT(*) FROM games WHERE players.id = games.winner_id" +
-		") AS winned, (" +
-			"SELECT COUNT(*) FROM games WHERE players.id = games.looser_id" +
-		") AS loosed " +
-		"FROM players" +
+		"SELECT games.* " +
+		"FROM games" +
 		"", function (err, rows) {
 			if (err) {
 				result.error = {
@@ -65,10 +60,10 @@ exports.store = function (req, res) {
 		error: null
 	};
 
-	var stmt = db.prepare("INSERT INTO players ( name, image ) VALUES (?, ?)");
+	var stmt = db.prepare("INSERT INTO games ( winner_id, looser_id ) VALUES (?, ?)");
 	stmt.run([
-		req.body.name,
-		faker.image.avatar()
+		req.body.winner_id,
+		req.body.looser_id
 	], function (err, rows) {
 		if (err) {
 			result.error = {
@@ -98,7 +93,7 @@ exports.show = function (req, res) {
 		error: null
 	};
 
-	db.get("SELECT * FROM players WHERE id = ?", [req.params.id], function (err, rows) {
+	db.get("SELECT * FROM games WHERE id = ?", [req.params.id], function (err, rows) {
 		if (err) {
 			result.error = {
 				'code': err.errno,
@@ -146,11 +141,11 @@ exports.update = function (req, res) {
 	};
 
 	var stmt = db.prepare("" +
-		"UPDATE players SET name = ?, image = ? " +
+		"UPDATE games SET winner_id = ?, looser_id = ? " +
 		"WHERE id = ?");
 	stmt.run([
-		req.query.name,
-		faker.image.avatar(),
+		req.query.winner_id,
+		req.query.looser_id,
 		req.params.id
 	], function (err, rows) {
 		if (err) {
@@ -178,7 +173,7 @@ exports.destroy = function (req, res) {
 		error: null
 	};
 
-	db.get("SELECT * FROM players WHERE id = ?", [req.params.id], function (err, rows) {
+	db.get("SELECT * FROM games WHERE id = ?", [req.params.id], function (err, rows) {
 		if (err) {
 			result.error = {
 				'code': err.errno,
@@ -189,7 +184,7 @@ exports.destroy = function (req, res) {
 		else {
 			if( rows && rows.id ) {
 				var stmt = db.prepare("" +
-					"DELETE FROM players " +
+					"DELETE FROM games " +
 					"WHERE id = ?");
 				stmt.run([
 					req.params.id
