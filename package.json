@@ -1,0 +1,9 @@
+{
+  "name": "game-of-drones",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "4.13.*",
+    "method-override": "2.3.*",
+    "body-parser": "1.15.*"
+  }
+}
