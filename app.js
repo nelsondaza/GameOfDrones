@@ -8,12 +8,14 @@ var express        = require("express"),
     //db = new sqlite3.Database(':memory:'),
 
     DatabaseController = require('./server/controllers/DatabaseController'),
-    PlayerController = require('./server/controllers/PlayerController');
-    GameController = require('./server/controllers/GameController');
+    PlayerController = require('./server/controllers/PlayerController'),
+    GameController = require('./server/controllers/GameController'),
+    MoveController = require('./server/controllers/MoveController');
 
 DatabaseController.setDB( db );
 PlayerController.setDB( db );
 GameController.setDB( db );
+MoveController.setDB( db );
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -41,6 +43,14 @@ app.get('/games/:id/edit', GameController.edit);
 app.post('/games', GameController.store);
 app.put('/games/:id', GameController.update);
 app.delete('/games/:id', GameController.destroy);
+
+app.get('/moves', MoveController.index);
+app.get('/moves/create', MoveController.create);
+app.get('/moves/:id', MoveController.show);
+app.get('/moves/:id/edit', MoveController.edit);
+app.post('/moves', MoveController.store);
+app.put('/moves/:id', MoveController.update);
+app.delete('/moves/:id', MoveController.destroy);
 
 
 app.use(router);

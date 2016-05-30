@@ -80,10 +80,10 @@ exports.create = function ( seed ) {
  */
 exports.seed = function (req, res) {
 
-	var stmt = db.prepare("INSERT INTO moves ( name, kills ) " +
-		"VALUES ('Paper', 'Rock')," +
-		" ('Rock', 'Scissors')," +
-		" ('Scissors', 'Paper')" +
+	var stmt = db.prepare("INSERT INTO moves ( name, kills, image ) " +
+		"VALUES ('Paper', 'Rock', 'http://blog.japandict.com/wp-content/plugins/wp-emoji-one/icons/1F590.png')," +
+		" ('Rock', 'Scissors', 'http://blog.japandict.com/wp-content/plugins/wp-emoji-one/icons/270A.png')," +
+		" ('Scissors', 'Paper', 'http://blog.japandict.com/wp-content/plugins/wp-emoji-one/icons/270C.png')" +
 		";");
 	stmt.run();
 
