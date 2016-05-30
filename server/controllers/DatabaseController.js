@@ -10,6 +10,7 @@ exports.setDB = function (globalDB) {
 	db = globalDB;
 
 	db.serialize(function() {
+		//self.destroy();
 		db.get("SELECT name FROM sqlite_sequence WHERE name='players'", function (err, rows) {
 			exists = ( !err && !!rows );
 			if( !exists ) {
@@ -88,13 +89,14 @@ exports.seed = function (req, res) {
 
 	stmt = db.prepare("INSERT INTO players ( name, image ) VALUES (?, ?)");
 
-	var total = 0;
-	for (; total < 20; total++) {
+	var end = 0;
+	for ( var c = 0; c < 20; c++) {
 		stmt.run([
 			faker.name.findName(),
 			faker.image.avatar()
 		], function(){
-			if( total == 20 ) {
+			end ++;
+			if( end == 20 ) {
 				stmt = db.prepare("INSERT INTO games ( winner_id, looser_id ) VALUES (?, ?)");
 				for (var i = 0; i < 100; i++) {
 					db.all("SELECT * FROM players ORDER BY RANDOM() LIMIT 2", function(err, rows) {
