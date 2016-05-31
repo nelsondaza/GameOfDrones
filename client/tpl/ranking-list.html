@@ -1,0 +1,10 @@
+	<md-list class="fixedRows md-dense">
+		<md-list-item class="md-3-line contact-item" ng-repeat="player in ranking.ranking">
+			<img ng-src="{{player.image}}" class="md-avatar" alt="{{player.name}}"/>
+			<div class="md-list-item-text compact">
+				<h3>{{player.name}}</h3>
+				<h4 class="green">{{player.winned}} wins</h4>
+				<p class="red">{{player.loosed}} looses</p>
+			</div>
+		</md-list-item>
+	</md-list>

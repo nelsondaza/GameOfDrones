@@ -23,7 +23,8 @@ exports.index = function (req, res) {
 		") AS winned, (" +
 			"SELECT COUNT(*) FROM games WHERE players.id = games.looser_id" +
 		") AS loosed " +
-		"FROM players" +
+		"FROM players " +
+		"ORDER BY winned DESC, loosed ASC " +
 		"", function (err, rows) {
 			if (err) {
 				result.error = {

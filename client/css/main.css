@@ -280,3 +280,26 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+moves-list md-list-item {
+    width: 40%;
+	float: left;
+	border: 1px solid #EEE;
+	margin: 2px;
+}
+ranking-list md-list-item {
+	width: 28%;
+	float: left;
+	border: 1px solid #EEE;
+	margin: 2px;
+}
+ranking-list md-list-item .green {
+	font-weight: bold !important;
+	color: #4CAF50 !important;
+}
+ranking-list md-list-item .red {
+	font-weight: normal !important;
+	color: #ff4436 !important;
+	font-size: 10px !important;
+}
+

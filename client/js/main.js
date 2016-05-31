@@ -2,20 +2,22 @@
 	'use strict';
 
 	angular.module('godapp.services', [
-		//'godapp.services.socket'
+
 	]);
 	angular.module('godapp.factories', [
-		'godapp.factories.moves'
+		'godapp.factories.moves',
+		'godapp.factories.players'
 	]);
 	angular.module('godapp.controllers', [
-		//'godapp.controllers.godapp'
+
 	]);
 	angular.module('godapp.directives', [
 		'godapp.directives.toolbar',
-		'godapp.directives.moves-list'
+		'godapp.directives.moves-list',
+		'godapp.directives.ranking-list'
 	]);
 
-	var app = angular.module('godapp',['ngResource','ngAnimate','ngMaterial', 'ui.router', 'godapp.controllers', 'godapp.services', 'godapp.directives']);
+	var app = angular.module('godapp',['ngResource','ngAnimate','ngMaterial', 'ui.router', 'godapp.controllers', 'godapp.services', 'godapp.factories', 'godapp.directives']);
 
 	app.config(['$provide', '$urlRouterProvider', '$stateProvider', '$httpProvider',function($provide, $urlRouterProvider, $stateProvider, $httpProvider) {
 
@@ -25,7 +27,20 @@
 			.state('home', {
 				url: '/',
 				templateUrl: '/tpl/home.html'
-			});
+			})
+			.state('play', {
+				url: '/play',
+				templateUrl: '/tpl/play.html'
+			})
+			.state('ranking', {
+				url: '/ranking',
+				templateUrl: '/tpl/ranking.html'
+			})
+			.state('admin', {
+				url: '/admin',
+				templateUrl: '/tpl/admin.html'
+			})
+		;
 
 	}]);
 
