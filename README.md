@@ -60,57 +60,24 @@ Install dependencies: (_npm_ or _node_ installations are not part of this doc)
 npm install
 ```
 
-Cree un archivo de entorno basándose en el de ejemplo:
+Start the server:
 ```
-cp .env.example .env
-```
-
-Cree una llave de aplicación:
-```
-php artisan key:generate
+node app.js
 ```
 
-Edite el archivo _.env_ configurando la conexión a una base de datos ya creada:
-```
-> DB_CONNECTION=mysql
-> DB_HOST=127.0.0.1
-> DB_PORT=3306
-> DB_DATABASE=homestead
-> DB_USERNAME=homestead
-> DB_PASSWORD=secret
-```
+Test URLs:
 
-Cree las entidades en la BDD:
-```
-php artisan migrate
-```
-
-Cree los datos iniciales:
-```
-php artisan db:seed
-```
-
-Ejecute las pruebas unitarias:
-```
-vendor/bin/phpunit
-```
-
-Para verlo en su navegador podría usar el siguiente comando:
-```
-php artisan serve --host=localhost --port=9092
-```
-URL de prueba:
-
-Contenido | URL
+Content | URL
 ------------ | -------------
-Listado de libros | [http://localhost:9092/api/books](http://localhost:9092/api/books)
-Ver el libro con ID 10 y sus ventas | [http://localhost:9092/api/books/10](http://localhost:9092/api/books/10)
-Listado de ventas | [http://localhost:9092/api/sales](http://localhost:9092/api/sales)
-Ver la venta con ID 32 | [http://localhost:9092/api/sales/32](http://localhost:9092/api/sales/32)
+REST Moves list | [http://localhost:3000/moves](http://localhost:3000/moves)
+REST Move details | [http://localhost:3000/moves/Rock](http://localhost:3000/moves/Rock)
+REST Players list | [http://localhost:3000/players](http://localhost:3000/players)
+REST Player details | [http://localhost:3000/players/1](http://localhost:3000/players/1)
+REST Games list | [http://localhost:3000/games](http://localhost:3000/games)
+REST Game details | [http://localhost:3000/games/1](http://localhost:3000/games/1)
+Game home | [http://localhost:3000/](http://localhost:3000/)
+Admin home | [http://localhost:3000/admin](http://localhost:3000/admin)
 
-> Para ver el listado de rutas y sus métodos:
-> ```php artisan route:list```
 
-
-## _GRACIAS_
+## _THANKS_
 
