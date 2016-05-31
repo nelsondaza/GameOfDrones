@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en" ng-app="godapp">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -19,8 +19,16 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <div layout="row">
+	        <div flex="20">
+	        </div>
+	        <div flex="60">
+		        <toolbar></toolbar>
+		        <ui-view></ui-view>
+	        </div>
+	        <div flex="20">
+	        </div>
+        </div>
 
         <script src="/node_modules/angular/angular.js"></script>
         <script src="/node_modules/angular-animate/angular-animate.js"></script>
@@ -29,6 +37,9 @@
         <script src="/node_modules/angular-storage/dist/angular-storage.js"></script>
         <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
 
+
+        <script src="/js/factories/moves.js"></script>
+        <script src="/js/directives/toolbar.js"></script>
         <script src="/js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

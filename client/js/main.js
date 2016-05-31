@@ -4,6 +4,9 @@
 	angular.module('godapp.services', [
 		'godapp.services.socket'
 	]);
+	angular.module('godapp.factories', [
+		'godapp.factories.moves'
+	]);
 	angular.module('godapp.controllers', [
 		//'godapp.controllers.godapp'
 	]);
@@ -11,7 +14,7 @@
 		'godapp.directives.toolbar'
 	]);
 
-	var app = angular.module('godapp',['ngAnimate','ngMaterial', 'ui.router', 'godapp.controllers', 'godapp.services', 'godapp.directives']);
+	var app = angular.module('godapp',['ngResource','ngAnimate','ngMaterial', 'ui.router', 'godapp.controllers', 'godapp.services', 'godapp.directives']);
 
 	app.config(['$provide', '$urlRouterProvider', '$stateProvider', '$httpProvider',function($provide, $urlRouterProvider, $stateProvider, $httpProvider) {
 

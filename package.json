@@ -15,6 +15,7 @@
 		"angular-animate":"1.5.*",
 		"angular-material":"1.1.0-rc4-master-06e7e99",
 		"angular-storage":"0.0.1*",
-		"angular-ui-router":"0.3.*"
+		"angular-ui-router":"0.3.*",
+		"angular-resource": "1.5.*"
 	}
 }
