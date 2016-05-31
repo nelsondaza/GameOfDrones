@@ -1,0 +1,9 @@
+<md-list class="fixedRows">
+	<md-list-item class="md-2-line contact-item"  ng-repeat="move in moves.moves">
+		<img ng-src="{{move.image}}" class="md-avatar" alt="{{move.name}}" />
+		<div class="md-list-item-text compact">
+			<h3>{{move.name}}</h3>
+			<p>&raquo; Kills <strong>{{move.kills}}</strong></p>
+		</div>
+	</md-list-item>
+</md-list>

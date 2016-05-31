@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('godapp.services', [
-		'godapp.services.socket'
+		//'godapp.services.socket'
 	]);
 	angular.module('godapp.factories', [
 		'godapp.factories.moves'
@@ -11,7 +11,8 @@
 		//'godapp.controllers.godapp'
 	]);
 	angular.module('godapp.directives', [
-		'godapp.directives.toolbar'
+		'godapp.directives.toolbar',
+		'godapp.directives.moves-list'
 	]);
 
 	var app = angular.module('godapp',['ngResource','ngAnimate','ngMaterial', 'ui.router', 'godapp.controllers', 'godapp.services', 'godapp.directives']);
@@ -28,7 +29,7 @@
 
 	}]);
 
-	app.run(['$rootScope','$location', 'SocketService', function ( $rootScope, $location, SocketService ) {
+	app.run(['$rootScope','$location', function ( $rootScope, $location ) {
 
 
 	}]);
