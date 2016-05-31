@@ -1,0 +1,99 @@
+<md-content ng-controller="GameController as game">
+	<div layout="row" layout-xs="column" ng-if="!game.ready">
+		<div flex>
+			<h4>Player 1</h4>
+			<md-list class="fixedRows md-dense">
+				<md-list-item class="md-2-line contact-item">
+					<img ng-src="{{game.player1.image}}" class="md-avatar" alt="{{game.player1.name}}"/>
+					<div class="md-list-item-text compact">
+						{{game.player1.name}}
+						<md-input-container ng-if="false">
+							<label>Name</label>
+							<input ng-model="game.player1.name">
+						</md-input-container>
+					</div>
+				</md-list-item>
+			</md-list>
+			<md-autocomplete
+				md-selected-item="game.player1"
+				md-search-text-change="game.searchTextChange(game.searchText1)"
+				md-search-text="game.searchText1"
+				md-selected-item-change="game.selectedItemChange(item)"
+				md-items="item in game.querySearch(game.searchText1)"
+				md-item-text="item.name"
+				md-min-length="0"
+				placeholder="Pick an existing player"
+				md-menu-class="autocomplete-custom-template">
+				<md-item-template class="md-2-line contact-item">
+					<md-list class="fixedRows md-dense">
+						<md-list-item class="md-2-line contact-item">
+							<img ng-src="{{item.image}}" class="md-avatar" alt="{{item.name}}"/>
+							<div class="md-list-item-text compact">
+								<h3>{{item.name}}</h3>
+								<p>{{item.winned}} wins / {{item.loosed}} looses</p>
+							</div>
+						</md-list-item>
+					</md-list>
+				</md-item-template>
+			</md-autocomplete>
+		</div>
+		<div flex>
+			<h4>Player 2</h4>
+			<md-list class="fixedRows md-dense">
+				<md-list-item class="md-2-line contact-item">
+					<img ng-src="{{game.player2.image}}" class="md-avatar" alt="{{game.player2.name}}"/>
+					<div class="md-list-item-text compact">
+						{{game.player2.name}}
+						<md-input-container ng-if="false">
+							<label>Name</label>
+							<input ng-model="game.player2.name">
+						</md-input-container>
+					</div>
+				</md-list-item>
+			</md-list>
+			<md-autocomplete
+				md-selected-item="game.player2"
+				md-search-text-change="game.searchTextChange(game.searchText2)"
+				md-search-text="game.searchText2"
+				md-selected-item-change="game.selectedItemChange(item)"
+				md-items="item in game.querySearch(game.searchText2)"
+				md-item-text="item.name"
+				md-min-length="0"
+				placeholder="Pick an existing player"
+				md-menu-class="autocomplete-custom-template">
+				<md-item-template class="md-2-line contact-item">
+					<md-list class="fixedRows md-dense">
+						<md-list-item class="md-2-line contact-item">
+							<img ng-src="{{item.image}}" class="md-avatar" alt="{{item.name}}"/>
+							<div class="md-list-item-text compact">
+								<h3>{{item.name}}</h3>
+								<p>{{item.winned}} wins / {{item.loosed}} looses</p>
+							</div>
+						</md-list-item>
+					</md-list>
+				</md-item-template>
+			</md-autocomplete>
+		</div>
+	</div>
+	<section layout="row" layout-sm="column" layout-align="center center" layout-wrap ng-if="game.player1.id && game.player2.id">
+		<md-button class="md-raised md-primary" ng-click="game.start()">Go!</md-button>
+	</section>
+	</div>
+	<div layout="row" layout-xs="column" ng-if="game.ready">
+		<div>
+			<div flex>
+				<h4>Welcome!</h4>
+				<p>
+					In Game of Drones there are two players trying to conquer each other.
+					<br>
+					Players take turns to make their move, choosing Paper, Rock, Scissors and more.
+					Each move beats another, just like the game “Paper, rock, scissors”.
+				</p>
+			</div>
+			<div flex>
+				<h4>Actual moves are listed below:</h4>
+				<moves-list></moves-list>
+			</div>
+		</div>
+	</div>
+</md-content>

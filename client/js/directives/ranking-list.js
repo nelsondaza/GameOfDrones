@@ -4,7 +4,6 @@ angular.module('godapp.directives.ranking-list', ['godapp.factories.players'])
 		return {
 			templateUrl: '/tpl/ranking-list.html',
 			controller: ['$location', 'Players',function ($location, Players) {
-				console.debug('load..');
 				var self = this;
 				this.ranking = [];
 				Players.get(function( resource ){

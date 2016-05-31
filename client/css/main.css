@@ -303,3 +303,13 @@ ranking-list md-list-item .red {
 	font-size: 10px !important;
 }
 
+md-autocomplete-parent-scope md-list {
+	padding: 0;
+}
+
+md-autocomplete-parent-scope md-list md-list-item {
+	border-top: 1px solid #EEE;
+}
+md-autocomplete-parent-scope md-list md-list-item>* {
+	margin-top: 6px !important;
+}

@@ -9,7 +9,7 @@
 		'godapp.factories.players'
 	]);
 	angular.module('godapp.controllers', [
-
+		'godapp.controllers.game'
 	]);
 	angular.module('godapp.directives', [
 		'godapp.directives.toolbar',
