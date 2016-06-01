@@ -20,11 +20,11 @@ exports.index = function (req, res) {
 	db.all("" +
 		"SELECT players.*, (" +
 			"SELECT COUNT(*) FROM games WHERE players.id = games.winner_id" +
-		") AS winned, (" +
-			"SELECT COUNT(*) FROM games WHERE players.id = games.looser_id" +
-		") AS loosed " +
+		") AS won, (" +
+			"SELECT COUNT(*) FROM games WHERE players.id = games.loser_id" +
+		") AS lost " +
 		"FROM players " +
-		"ORDER BY winned DESC, loosed ASC " +
+		"ORDER BY won DESC, lost ASC " +
 		"", function (err, rows) {
 			if (err) {
 				result.error = {

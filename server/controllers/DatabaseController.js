@@ -57,11 +57,11 @@ exports.create = function ( seed ) {
 						'(' +
 						'"id" INTEGER PRIMARY KEY AUTOINCREMENT, ' +
 						'"winner_id" INTEGER, ' +
-						'"looser_id" INTEGER, ' +
+						'"loser_id" INTEGER, ' +
 						'"udpated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ' +
 						'"created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ' +
 						'FOREIGN KEY(winner_id) REFERENCES players(id),' +
-						'FOREIGN KEY(looser_id) REFERENCES players(id)' +
+						'FOREIGN KEY(loser_id) REFERENCES players(id)' +
 						')',function(){
 							if( seed )
 								self.seed();
@@ -97,7 +97,7 @@ exports.seed = function (req, res) {
 		], function(){
 			end ++;
 			if( end == 20 ) {
-				stmt = db.prepare("INSERT INTO games ( winner_id, looser_id ) VALUES (?, ?)");
+				stmt = db.prepare("INSERT INTO games ( winner_id, loser_id ) VALUES (?, ?)");
 				for (var i = 0; i < 100; i++) {
 					db.all("SELECT * FROM players ORDER BY RANDOM() LIMIT 2", function(err, rows) {
 						stmt.run([

@@ -60,10 +60,10 @@ exports.store = function (req, res) {
 		error: null
 	};
 
-	var stmt = db.prepare("INSERT INTO games ( winner_id, looser_id ) VALUES (?, ?)");
+	var stmt = db.prepare("INSERT INTO games ( winner_id, loser_id ) VALUES (?, ?)");
 	stmt.run([
 		req.body.winner_id,
-		req.body.looser_id
+		req.body.loser_id
 	], function (err, rows) {
 		if (err) {
 			result.error = {
@@ -141,11 +141,11 @@ exports.update = function (req, res) {
 	};
 
 	var stmt = db.prepare("" +
-		"UPDATE games SET winner_id = ?, looser_id = ? " +
+		"UPDATE games SET winner_id = ?, loser_id = ? " +
 		"WHERE id = ?");
 	stmt.run([
 		req.query.winner_id,
-		req.query.looser_id,
+		req.query.loser_id,
 		req.params.id
 	], function (err, rows) {
 		if (err) {
