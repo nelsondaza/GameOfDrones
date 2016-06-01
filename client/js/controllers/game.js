@@ -1,9 +1,8 @@
 'use strict';
 angular.module('godapp.controllers.game', ['godapp.factories'])
-	.controller('GameController', ['$scope', '$location', 'Players', 'Moves', '$mdDialog', '$element', function( $scope, $location, Players, Moves, $mdDialog, $element ) {
+	.controller('GameController', ['$scope', '$location', 'Players', 'Moves', 'Games', '$mdDialog', '$element', function( $scope, $location, Players, Moves, Games, $mdDialog, $element ) {
 
 		var self = this;
-		self.end = false;
 
 		self.init = function( ) {
 			self.player1 = null;
@@ -13,6 +12,7 @@ angular.module('godapp.controllers.game', ['godapp.factories'])
 			self.actualPlayer = null;
 			self.actualMove = null;
 			self.ready = false;
+			self.end = false;
 
 			self.ranking = [];
 			Players.get(function( resource ){
@@ -80,46 +80,28 @@ angular.module('godapp.controllers.game', ['godapp.factories'])
 
 		self.doMove = function( move ) {
 
+			var dTitle = '';
+			var dContent = '';
+			var dCallback = null;
+
 			if( self.actualMove ) {
 				if( move.kills == self.actualMove.name ) {
 					self.score1 += ( self.actualPlayer.id == self.player1.id ? 1 : 0 );
 					self.score2 += ( self.actualPlayer.id == self.player2.id ? 1 : 0 );
 
-					$mdDialog.show(
-						$mdDialog.alert()
-							.parent($element)
-							.clickOutsideToClose(true)
-							.title('Point for you')
-							.textContent('You got this point')
-							.ariaLabel('Point for you')
-							.ok('Got it!')
-					);
-
+					dTitle = 'Point for you';
+					dContent = 'You got this point';
 				}
 				else if( move.name == self.actualMove.kills ) {
 					self.score2 += ( self.actualPlayer.id == self.player1.id ? 1 : 0 );
 					self.score1 += ( self.actualPlayer.id == self.player2.id ? 1 : 0 );
 
-					$mdDialog.show(
-						$mdDialog.alert()
-							.parent($element)
-							.clickOutsideToClose(true)
-							.title('Point missed')
-							.textContent('You lost this point')
-							.ariaLabel('Point missed')
-							.ok('Got it!')
-					);
+					dTitle = 'Point missed';
+					dContent = 'You lost this point';
 				}
 				else {
-					$mdDialog.show(
-						$mdDialog.alert()
-							.parent($element)
-							.clickOutsideToClose(true)
-							.title('Draw')
-							.textContent('Not point this time')
-							.ariaLabel('Draw')
-							.ok('Got it!')
-					);
+					dTitle = 'Draw';
+					dContent = 'Not point this time';
 				}
 				self.actualMove = null;
 			}
@@ -134,20 +116,31 @@ angular.module('godapp.controllers.game', ['godapp.factories'])
 				winner.won ++;
 				loser.lost ++;
 
-				$mdDialog.show(
-					$mdDialog.alert()
-						.parent($element)
-						.clickOutsideToClose(true)
-						.title('Winner')
-						.textContent('The winner of this game was: ' + winner.name)
-						.ariaLabel('Winner')
-						.ok('Got it!')
-				);
-				self.init();
+				dTitle = 'Winner!!';
+				dContent = 'The winner of this game was: ' + winner.name;
 
+				Games.save({
+					winner_id:winner.id,
+					loser_id:loser.id
+				});
+
+				self.end = true;
 			}
 			else {
 				self.actualPlayer = ( self.actualPlayer.id == self.player1.id ? self.player2 : self.player1 );
+			}
+
+			if( dTitle ) {
+				$mdDialog.show(
+					$mdDialog.alert()
+						.parent($element.parent())
+						.clickOutsideToClose(true)
+						.title(dTitle)
+						.textContent(dContent)
+						.ariaLabel(dTitle)
+						.ok('Got it!')
+				);
+
 			}
 		};
 

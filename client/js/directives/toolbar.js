@@ -5,19 +5,15 @@ angular.module('godapp.directives.toolbar', [])
 			templateUrl: '/tpl/toolbar.html',
 			controller: ['$location',function ($location) {
 				this.home  = function () {
-					console.debug( 'home' );
 					$location.path('/');
 				};
 				this.play  = function () {
-					console.debug( 'play' );
 					$location.path('/play');
 				};
 				this.ranking  = function () {
-					console.debug( 'rank' );
 					$location.path('/ranking');
 				};
 				this.admin = function () {
-					console.debug( 'admin' );
 					$location.path('/admin');
 				};
 			}],

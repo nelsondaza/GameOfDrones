@@ -6,7 +6,8 @@
 	]);
 	angular.module('godapp.factories', [
 		'godapp.factories.moves',
-		'godapp.factories.players'
+		'godapp.factories.players',
+		'godapp.factories.games'
 	]);
 	angular.module('godapp.controllers', [
 		'godapp.controllers.game'
